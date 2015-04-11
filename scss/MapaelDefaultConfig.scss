@@ -1,0 +1,94 @@
+@import "SassyExport";
+@import "variables";
+
+
+$map: (
+        map : (
+                defaultArea : (
+                        attrs : (
+                                fill: $defaultArea-fill,
+                                stroke: $defaultArea-stroke-color,
+                                stroke-width: $defaultArea-stroke-width,
+                                stroke-linejoin: $defaultArea-stroke-linejoin
+                        ),
+                        attrsHover : (
+                                fill: $defaultArea-hover-fill,
+                                animDuration: $defaultArea-hover-animDuration,
+                        ),
+                        text : (
+                                position: $defaultArea-text-position,
+                                margin: $defaultArea-text-margin,
+                                attrs: (
+                                        font-size: $defaultArea-text-font-size,
+                                        fill: $defaultArea-text-fill
+                                ),
+                                attrsHover: (
+                                        fill:$defaultArea-text-hover-fill,
+                                        animDuration:$defaultArea-text-hover-animDuration
+                                )
+                        )
+                ),
+                defaultPlot : (
+                        type : $defaultPlot-type,
+                        size : $defaultPlot-size,
+                        attrs : (
+                                fill : $defaultPlot-fill-color,
+                                stroke : $defaultPlot-stroke-color,
+                                stroke-width : $defaultPlot-stroke-width,
+                                stroke-linejoin : $defaultPlot-stroke-join
+                        ),
+                        attrsHover : (
+                                stroke-width : $defaultPlot-stroke-hover-width,
+                                animDuration : $defaultPlot-stroke-hover-animDuration
+                        ),
+                        text : (
+                                position : $defaultPlot-text-position,
+                                margin : $defaultPlot-text-margin,
+                                attrs : (
+                                        font-size : $defaultPlot-text-font-size,
+                                        fill : $defaultPlot-text-fill
+                                ),
+                                attrsHover : (
+                                        fill : $defaultPlot-text-hover-fill,
+                                        animDuration : $defaultPlot-text-animDuration
+                                )
+                        ),
+                ),
+                defaultLink : (
+                        factor : $defaultLink-factor,
+                        attrs : (
+                                stroke : $defaultLink-stroke-color,
+                                stroke-width : $defaultLink-stroke-width
+                        ),
+                        attrsHover : (
+                                animDuration : $defaultLink-hover-animDuration
+                        ),
+                        text : (
+                                position : $defaultLink-text-position,
+                                margin : $defaultLink-text-margin,
+                                attrs : (
+                                        font-size : $defaultLink-text-font-size,
+                                        fill : $defaultLink-text-fill
+                                ),
+                                attrsHover : (
+                                        fill : $defaultLink-text-hover-fill,
+                                        animDuration : $defaultLink-text-animDuration
+                                )
+                        )
+                ),
+                hasLinkArea : (
+                        attrs : (
+                                fill : $area-has-link-fill,
+                                stroke : $area-has-stroke-color,
+                        )
+                ),
+                selectedArea : (
+                        attrs : (
+                                fill : $area-selected-fill,
+                                stroke : $area-selected-stroke-color,
+                        )
+                )
+        )
+);
+
+@include SassyExport("/json/default_config.json", $map);

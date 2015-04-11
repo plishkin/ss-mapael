@@ -1,0 +1,33 @@
+en:
+  MapaelCountryPage:
+    SINGULARNAME: "Country page"
+    PLURALNAME: "Country pages"
+  MapaelCountryPageExtension:
+    db_CountryCode: "Country code"
+    db_TooltipContent: "Tooltip content"
+    db_Href: "External link"
+    db_Target: "Open"
+    OpenInTheSameWindow: "in the same window"
+    OpenInANewWindow: "in a new window"
+    has_one_CountryHolderPage: "Parent country holder page"
+    has_many_MapaelCities: "Cities"
+  MapaelCountryHolderPage:
+    SINGULARNAME: "Country holder page"
+    PLURALNAME: "Country holder pages"
+  MapaelCountryHolderPageExtension:
+    has_many_CountryPages: "Country pages"
+  MapaelCity:
+    SINGULARNAME: "City"
+    PLURALNAME: "Cities"
+    db_Name: "Name"
+    db_Lat: "Latitude"
+    db_Lng: "Longitude"
+    db_HidePlot: "Hide plot"
+    has_one_CountryPage: "Country page"
+    many_many_LinkedToCities: "Linked cities"
+    belongs_many_many_LinkedFromCities: "Linked cities"
+    AddNewCity: "Add new city"
+    SearchAndAddExistingCity: "Search and add existing city"
+    LinkTooltipContent: "Link tooltip"
+    LinkHref: "Link reference"
+    LinkTarget: "Link target"

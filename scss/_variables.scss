@@ -1,0 +1,55 @@
+$primary-color: #0c468e;
+$warning-color: #ECC800;
+$mab-bg-color: lighten($primary-color,60%);
+$animDuration: 100;
+$font-size: 15;
+
+$defaultArea-fill: lighten($primary-color,80);
+$defaultArea-stroke-color: lighten($primary-color,50%);
+$defaultArea-stroke-width: .3;
+$defaultArea-stroke-linejoin: round;
+
+$defaultArea-hover-fill: $primary-color;
+$defaultArea-hover-animDuration: $animDuration;
+
+$defaultArea-text-position: inner;
+$defaultArea-text-margin: 2;
+$defaultArea-text-fill: $defaultArea-hover-fill;
+$defaultArea-text-font-size: 3;
+
+$defaultArea-text-hover-fill: $defaultArea-fill;
+$defaultArea-text-hover-animDuration: $animDuration;
+
+$defaultPlot-type: circle;
+$defaultPlot-size: 11;
+$defaultPlot-fill-color: lighten($primary-color, 40%);
+$defaultPlot-stroke-color: lighten($primary-color, 60%);
+$defaultPlot-stroke-width: 2;
+$defaultPlot-stroke-join: round;
+$defaultPlot-stroke-hover-width: 3;
+$defaultPlot-stroke-hover-animDuration: $animDuration;
+$defaultPlot-text-position: right;
+$defaultPlot-text-margin: 10;
+$defaultPlot-text-font-size: $font-size;
+$defaultPlot-text-fill: #000;
+$defaultPlot-text-hover-fill: #555;
+$defaultPlot-text-animDuration: $animDuration;
+
+$defaultLink-factor: 0.5;
+$defaultLink-stroke-color: lighten($primary-color, 40%);
+$defaultLink-stroke-width: 2;
+$defaultLink-hover-animDuration: $animDuration;
+$defaultLink-text-position: right;
+$defaultLink-text-margin: 10;
+$defaultLink-text-font-size: $font-size;
+$defaultLink-text-fill: #000;
+$defaultLink-text-hover-fill: #555;
+$defaultLink-text-animDuration: $animDuration;
+
+$area-has-link-fill: lighten($warning-color,30%);
+$area-has-stroke-color: $defaultArea-stroke-color;
+$area-selected-fill: $defaultArea-hover-fill;
+$area-selected-stroke-color: $defaultArea-stroke-color;
+
+
+

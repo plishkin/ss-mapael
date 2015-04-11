@@ -1,0 +1,33 @@
+ru:
+  MapaelCountryPage:
+    SINGULARNAME: "Страница страны"
+    PLURALNAME: "Страницы стран"
+  MapaelCountryPageExtension:
+    db_CountryCode: "Код страны"
+    db_TooltipContent: "Текст подсказки"
+    db_Href: "Внешняя ссылка"
+    db_Target: "Открывать"
+    OpenInTheSameWindow: "в том же самом окне"
+    OpenInANewWindow: "в новом окне"
+    has_one_CountryHolderPage: "Страница мира"
+    has_many_MapaelCities: "Города"
+  MapaelCountryHolderPage:
+    SINGULARNAME: "Страница мира"
+    PLURALNAME: "Страницы мира"
+  MapaelCountryHolderPageExtension:
+    has_many_CountryPages: "Страницы стран"
+  MapaelCity:
+    SINGULARNAME: "Город"
+    PLURALNAME: "Города"
+    db_Name: "Название"
+    db_Lat: "Широта"
+    db_Lng: "Долгота"
+    db_HidePlot: "Не показывать на карте"
+    has_one_CountryPage: "Страница страны"
+    many_many_LinkedToCities: "Связанные города"
+    belongs_many_many_LinkedFromCities: "Связанные города"
+    AddNewCity: "Добавить новый город"
+    SearchAndAddExistingCity: "Найти и добавить город"
+    LinkTooltipContent: "Текст подсказки на связи"
+    LinkHref: "Ссылка связи"
+    LinkTarget: "Открыть связь"

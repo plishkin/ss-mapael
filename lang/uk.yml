@@ -1,0 +1,33 @@
+uk:
+  MapaelCountryPage:
+    SINGULARNAME: "Сторінка країни"
+    PLURALNAME: "Сторінки країни"
+  MapaelCountryPageExtension:
+    db_CountryCode: "Код країни"
+    db_TooltipContent: "Текст підсказки"
+    db_Href: "Зовнішнє посилання"
+    db_Target: "Відкривати"
+    OpenInTheSameWindow: "в тому самому вікні"
+    OpenInANewWindow: "в новому вікні"
+    has_one_CountryHolderPage: "Сторінка світу"
+    has_many_MapaelCities: "Міста"
+  MapaelCountryHolderPage:
+    SINGULARNAME: "Сторінка світу"
+    PLURALNAME: "Сторінки світу"
+  MapaelCountryHolderPageExtension:
+    has_many_CountryPages: "Сторінки країн"
+  MapaelCity:
+    SINGULARNAME: "Місто"
+    PLURALNAME: "Міста"
+    db_Name: "Назва"
+    db_Lat: "Широта"
+    db_Lng: "Довгота"
+    db_HidePlot: "Не показувати на мапі"
+    has_one_CountryPage: "Сторінка країни"
+    many_many_LinkedToCities: "Пов'язані міста"
+    belongs_many_many_LinkedFromCities: "Пов'язані міста"
+    AddNewCity: "Додати нове місто"
+    SearchAndAddExistingCity: "Знайти і додати місто"
+    db_LinkTooltipContent: "Текст підсказки на зв'язку"
+    db_LinkHref: "Посилання зв'язку"
+    db_LinkTarget: "Відкривати зв'язок"

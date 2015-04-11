@@ -1,0 +1,19 @@
+{
+  "name": "bb-mapael",
+  "version": "0.0.1",
+  "authors": [
+    "slavka <viacheslav@plishkin.com.ua>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "neveldo/jQuery-Mapael": "~1.0.0",
+    "compass-mixins": "Igosuki/compass-mixins#~1.0.2"
+  }
+}

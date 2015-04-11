@@ -1,0 +1,19 @@
+{
+	"name": "plishkin/ss-mapael",
+	"description": "Silverstripe pages of countries using Mapael Map",
+	"type": "silverstripe-module",
+	"homepage": "http://github.com/plishkin/ss-mapael",
+	"keywords": ["silverstripe", "mapael"],
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "Viacheslav Plishkin",
+          "email": "viacheslav@plishkin.com.ua"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "~3.1",
+        "silverstripe/cms": "~3.1",
+        "silverstripe-australia/gridfieldextensions": "*"
+    }
+}

@@ -1,0 +1,19 @@
+---
+Name: MapaelExtensions
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+MapaelCountryHolderPage:
+  extensions:
+    - MapaelCountryHolderPageExtension
+MapaelCountryHolderPage_Controller:
+  extensions:
+    - MapaelCountryHolderPage_ControllerExtension
+MapaelCountryPage:
+  extensions:
+    - MapaelCountryPageExtension
+MapaelCountryPage_Controller:
+  extensions:
+    - MapaelCountryPage_ControllerExtension
+
