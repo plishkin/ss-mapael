@@ -110,15 +110,6 @@ class MapaelCountryPageExtension extends DataExtension {
 
 }
 
-class MapaelDefaultOptions extends Object {
-
-    public function __construct() {
-        parent::__construct();
-    }
-
-
-}
-
 class MapaelCountryPage_ControllerExtension extends MapaelPage_ControllerExtension {
 
 }
