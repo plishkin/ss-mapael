@@ -1,12 +1,14 @@
 <?php
 
-class MapaelPage_ControllerExtension extends \Extension {
+class MapaelPage_ControllerExtension extends \Extension
+{
 
     private static $allowed_actions = array(
         'MapaelMapConfig',
     );
 
-    public function onAfterInit() {
+    public function onAfterInit()
+    {
         /** @var Page_Controller $controller */
         $controller = $this->getOwner();
 
@@ -18,7 +20,6 @@ class MapaelPage_ControllerExtension extends \Extension {
                      '/javascript/mapael.js',
                      '/js/mapael.js'
                  ) as $path) {
-
             $candidate = $controller->ThemeDir() . $path;
             if (is_file(Director::baseFolder() . '/' . $candidate)) {
                 Requirements::javascript($candidate);
@@ -27,19 +28,22 @@ class MapaelPage_ControllerExtension extends \Extension {
         }
 
         $css_file = $controller->ThemeDir() . '/css/mapael.css';
-        if (!is_file($css_file)) $css_file = SS_MAPAEL_FOLDER . '/dist/css.css';
+        if (!is_file($css_file)) {
+            $css_file = SS_MAPAEL_FOLDER . '/dist/css.css';
+        }
         Requirements::css($css_file);
-
     }
 
-    public function MapaelMap() {
+    public function MapaelMap()
+    {
         /** @var MapaelMap $mapael */
         $mapael = MapaelMap::create();
         $mapael->MapaelMapConfig = $this->MapaelMapConfig();
         return $mapael->renderWith('MapaelMap');
     }
 
-    public function MapaelMapConfig() {
+    public function MapaelMapConfig()
+    {
         $cfg = MapaelMap::MapaelConfigArray();
         $holder = null;
         $selected_country_page = null;
@@ -51,9 +55,11 @@ class MapaelPage_ControllerExtension extends \Extension {
             $holder = $page;
         }
 
-        $default_config = json_decode(file_get_contents(SS_MAPAEL_FOLDER_PATH . '/json/default_config.json'),true);
+        $default_config = json_decode(file_get_contents(SS_MAPAEL_FOLDER_PATH . '/json/default_config.json'), true);
 
-        if (!isset($cfg['areas'])) $cfg['areas'] = array();
+        if (!isset($cfg['areas'])) {
+            $cfg['areas'] = array();
+        }
         foreach ($holder->CountryPages() as $country_page) {
             /** @var Page|MapaelCountryPageExtension $country_page */
             if ($country_page->canView()) {
@@ -74,7 +80,9 @@ class MapaelPage_ControllerExtension extends \Extension {
                     $cfg['plots'][$cid]['latitude'] = $city->Lat;
                     $cfg['plots'][$cid]['longitude'] = $city->Lng;
                     $cfg['plots'][$cid]['href'] = $city->Link();
-                    if ($city->Target) $cfg['plots'][$cid]['target'] = $city->Target;
+                    if ($city->Target) {
+                        $cfg['plots'][$cid]['target'] = $city->Target;
+                    }
                     $cfg['plots'][$cid]['tooltip']['content'] = $city->Name;
                     if ($city->HidePlot) {
                         $cfg['plots'][$cid]['size'] = 0;
@@ -97,25 +105,23 @@ class MapaelPage_ControllerExtension extends \Extension {
                             }
                         }
                     }
-
                 }
-
             }
         }
 
         return json_encode($cfg);
     }
 
-    public function AlternativeContent() {
-
+    public function AlternativeContent()
+    {
     }
 
-    private function getMapaelPage() {
+    private function getMapaelPage()
+    {
         /** @var Page_Controller $controller */
         $controller = $this->getOwner();
         /** @var Page|MapaelCountryHolderPageExtension|MapaelCountryPageExtension $page */
         $page = $controller->data();
         return $page;
     }
-
 }

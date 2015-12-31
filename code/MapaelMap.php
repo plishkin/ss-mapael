@@ -1,6 +1,7 @@
 <?php
 
-class MapaelMap extends ViewableData {
+class MapaelMap extends ViewableData
+{
 
     public $MapaelMapConfig = null;
 
@@ -14,13 +15,15 @@ class MapaelMap extends ViewableData {
 
     private static $allowed_countries = 'AE,AF,AL,AM,AO,AR,AT,AU,AZ,BA,BD,BE,BF,BG,BI,BJ,BN,BO,BR,BS,BT,BW,BY,BZ,CA,CD,CF,CG,CH,CI,CL,CM,CN,CO,CR,CU,CY,CZ,DE,DJ,DK,DO,DZ,EC,EE,EG,ER,ES,ET,FI,FJ,FK,FR,GA,GB,GE,GH,GL,GM,GN,GQ,GR,GT,GW,GY,HN,HR,HT,HU,ID,IE,IL,IN,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KO,KP,KR,KW,KZ,LA,LB,LK,LR,LS,LT,LU,LV,LY,MA,MD,ME,MG,MK,ML,MM,MN,MR,MW,MX,MY,MZ,NA,NC,NC,NE,NG,NI,NL,NO,NP,NZ,OM,PA,PE,PG,PH,PK,PL,PR,PS,PT,PY,QA,RO,RS,RU,RW,SA,SB,SD,SE,SI,SK,SL,SN,SO,SO,SR,SS,SV,SY,SZ,TD,TF,TG,TH,TJ,TL,TM,TN,TR,TT,TW,TZ,UA,UG,US,UY,UZ,VE,VN,VU,WS,YE,ZA,ZM,ZW';
 
-    public static function getAllowedCountries() {
+    public static function getAllowedCountries()
+    {
         return self::$allowed_countries;
     }
 
     private static $allowed_countries_array = array();
 
-    public static function getAllowedCountriesArray() {
+    public static function getAllowedCountriesArray()
+    {
         if (!self::$allowed_countries_array) {
             foreach (explode(',', self::$allowed_countries) as $cc) {
                 self::$allowed_countries_array[$cc] = $cc;
@@ -31,11 +34,16 @@ class MapaelMap extends ViewableData {
 
     private static $_mcache = array();
 
-    public static function getAreasArray($locale=null) {
+    public static function getAreasArray($locale=null)
+    {
         $locale = $locale ? $locale : \i18n::get_locale();
         $name = 'areas_array_'.$locale;
-        if (isset(self::$_mcache[$name])) return self::$_mcache[$name];
-        if (!static::cache_exists($name) || \Director::isDev()) static::flushCountriesCache($locale);
+        if (isset(self::$_mcache[$name])) {
+            return self::$_mcache[$name];
+        }
+        if (!static::cache_exists($name) || \Director::isDev()) {
+            static::flushCountriesCache($locale);
+        }
         return self::$_mcache[$name] = static::get_cached($name);
     }
 
@@ -52,21 +60,23 @@ class MapaelMap extends ViewableData {
         ),
     );
 
-    public static function MapaelConfigArray($locale=null) {
+    public static function MapaelConfigArray($locale=null)
+    {
         $locale = $locale ? $locale : \i18n::get_locale();
         $cfg = self::$default_cfg;
         $cfg['areas'] = static::getAreasArray($locale);
         return $cfg;
     }
 
-    public static function flushCountriesCache($locale=null) {
+    public static function flushCountriesCache($locale=null)
+    {
         $locales = $locale ? array($locale) :
             (class_exists('Translatable') ? \Translatable::get_allowed_locales() : \i18n::get_locale());
         foreach ($locales as $localeItem) {
             $name = 'areas_array_'.$localeItem;
             $areas = array();
-            $source = \Zend_Locale::getTranslationList('territory',$localeItem,2);
-            foreach (explode(',',self::$allowed_countries) as $countryCode) {
+            $source = \Zend_Locale::getTranslationList('territory', $localeItem, 2);
+            foreach (explode(',', self::$allowed_countries) as $countryCode) {
                 $content = isset($source[$countryCode]) ? $source[$countryCode] : null;
                 if (!$content) {
                     $content = isset(self::$newTerritory[$countryCode][$localeItem]) ?
@@ -79,29 +89,34 @@ class MapaelMap extends ViewableData {
                 $areas[$countryCode]['tooltip'] = array('content' => $content);
 //                $areas[$countryCode]['text'] = array('content' => $content);
             }
-            static::set_cache($name,$areas);
+            static::set_cache($name, $areas);
         }
     }
 
-    public static function getCountryName($countryCode, $locale = null) {
+    public static function getCountryName($countryCode, $locale = null)
+    {
         $locale = $locale ? $locale : \i18n::get_locale();
-        $source = \Zend_Locale::getTranslationList('territory',$locale,2);
+        $source = \Zend_Locale::getTranslationList('territory', $locale, 2);
         return isset($source[$countryCode]) ? $source[$countryCode] : false;
     }
 
-    protected static function get_cached($name) {
+    protected static function get_cached($name)
+    {
         $file = SS_MAPAEL_TEMP_FOLDER.'/'.$name;
         return is_file($file) ? unserialize(file_get_contents($file)) : null;
     }
 
-    protected static function set_cache($name,$value) {
+    protected static function set_cache($name, $value)
+    {
         $folder = SS_MAPAEL_TEMP_FOLDER;
-        if (!is_dir($folder)) mkdir($folder,0777,true);
+        if (!is_dir($folder)) {
+            mkdir($folder, 0777, true);
+        }
         file_put_contents($folder.'/'.$name, serialize($value));
     }
 
-    protected static function cache_exists($name){
+    protected static function cache_exists($name)
+    {
         return is_file(SS_MAPAEL_TEMP_FOLDER.'/'.$name);
     }
-
 }

@@ -11,7 +11,8 @@
  * @method HasManyList MapaelCities()
  */
 
-class MapaelCountryPageExtension extends DataExtension {
+class MapaelCountryPageExtension extends DataExtension
+{
 
     private static $db = array(
         'CountryCode' => 'Varchar(2)',
@@ -29,27 +30,29 @@ class MapaelCountryPageExtension extends DataExtension {
         'MapaelCities' => 'MapaelCity',
     );
 
-    public function updateFieldLabels(&$labels) {
+    public function updateFieldLabels(&$labels)
+    {
         foreach (array('db', 'has_one', 'has_many', 'many_many', 'belongs_many_many') as $type) {
-            if (property_exists(__CLASS__,$type)) {
+            if (property_exists(__CLASS__, $type)) {
                 foreach (self::${$type} as $name => $val) {
-                    $labels[$name] = _t(__CLASS__.".{$type}_{$name}",FormField::name_to_label($name));
+                    $labels[$name] = _t(__CLASS__.".{$type}_{$name}", FormField::name_to_label($name));
                 }
             }
         }
     }
 
-    public function updateCMSFields(FieldList $fields) {
+    public function updateCMSFields(FieldList $fields)
+    {
         /** @var Page|MapaelCountryPageExtension $page */
         $page = $this->getOwner();
         $labels = $page->fieldLabels();
 
         $name = MapaelCountryPage::create()->i18n_singular_name();
-        $tab = $fields->findOrMakeTab('Root.CountryPageTab',$name);
+        $tab = $fields->findOrMakeTab('Root.CountryPageTab', $name);
         $tab->push(
             new TabSet('CountryPageTabSet',
-                $main = new Tab('CountryPageMain',_t('CMSMain.TabContent','Content')),
-                $cities = new Tab('CountryPageCities',$page->fieldLabel('MapaelCities'))
+                $main = new Tab('CountryPageMain', _t('CMSMain.TabContent', 'Content')),
+                $cities = new Tab('CountryPageCities', $page->fieldLabel('MapaelCities'))
             )
         );
 
@@ -57,10 +60,10 @@ class MapaelCountryPageExtension extends DataExtension {
         foreach (MapaelMap::getAreasArray() as $code => $attrs) {
             $arr[$code] = $attrs['tooltip']['content'];
         }
-        $main->push( $dd = new CountryDropdownField(
+        $main->push($dd = new CountryDropdownField(
             'CountryCode', $page->fieldLabel('CountryCode'), $arr, $page->CountryCode
         ));
-        $dd->setEmptyString(_t(__CLASS__.'.CountryCodeNone','None'));
+        $dd->setEmptyString(_t(__CLASS__.'.CountryCodeNone', 'None'));
 
         $main->push($tf = self::getTooltipContentField($page));
         $tf->setDescription(MapaelMap::getCountryName($page->CountryCode));
@@ -82,34 +85,35 @@ class MapaelCountryPageExtension extends DataExtension {
             $page->MapaelCities(),
             GridFieldConfig_RelationEditor::create()
         ));
-
     }
 
-    public static function getAttrField(DataObject $do, $attr, $property=null) {
-        return forward_static_call(array(__CLASS__,'get'.$attr.'Field'), $do, $property);
+    public static function getAttrField(DataObject $do, $attr, $property=null)
+    {
+        return forward_static_call(array(__CLASS__, 'get'.$attr.'Field'), $do, $property);
     }
 
-    public static function getTooltipContentField(DataObject $do,$property='TooltipContent') {
+    public static function getTooltipContentField(DataObject $do, $property='TooltipContent')
+    {
         /** @var MapaelCountryPageExtension|MapaelCity $do */
-        return new TextField($property, _t(__CLASS__.'.db_TooltipContent',FormField::name_to_label($property)),$do->{$property});
+        return new TextField($property, _t(__CLASS__.'.db_TooltipContent', FormField::name_to_label($property)), $do->{$property});
     }
 
-    public static function getHrefField(DataObject $do,$property='Href') {
+    public static function getHrefField(DataObject $do, $property='Href')
+    {
         /** @var MapaelCountryPageExtension|MapaelCity $do */
-        return new TextField($property, _t(__CLASS__.'.db_Href',FormField::name_to_label($property)),$do->{$property});
+        return new TextField($property, _t(__CLASS__.'.db_Href', FormField::name_to_label($property)), $do->{$property});
     }
 
-    public static function getTargetField(DataObject $do,$property='Target') {
+    public static function getTargetField(DataObject $do, $property='Target')
+    {
         /** @var MapaelCountryPageExtension|MapaelCity $do */
-        return new DropdownField($property, _t(__CLASS__.'.db_Target','Open page or link'), array(
-            '_self' => _t(__CLASS__.'.OpenInTheSameWindow','in the same window'),
-            '_blank' => _t(__CLASS__.'.OpenInANewWindow','in a new window'),
-        ),$do->{$property});
+        return new DropdownField($property, _t(__CLASS__.'.db_Target', 'Open page or link'), array(
+            '_self' => _t(__CLASS__.'.OpenInTheSameWindow', 'in the same window'),
+            '_blank' => _t(__CLASS__.'.OpenInANewWindow', 'in a new window'),
+        ), $do->{$property});
     }
-
-
 }
 
-class MapaelCountryPage_ControllerExtension extends MapaelPage_ControllerExtension {
-
+class MapaelCountryPage_ControllerExtension extends MapaelPage_ControllerExtension
+{
 }
